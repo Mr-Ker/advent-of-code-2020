@@ -1,12 +1,19 @@
+import sys
 import unittest
+
 from day01 import Day01
 
 
 class Day01Test(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        cls.day01 = Day01('test/test_day01.txt', None)
-        cls.day01.target_sum = 2020
+        try:
+            sys.argv.pop(sys.argv.index("discover"))
+        except ValueError:
+            pass
+        sys.argv.append("--input")
+        sys.argv.append("test/test_day01.txt")
+        cls.day01 = Day01()
 
     def test_multiple_of_found_sum_part1(self):
         self.assertEqual(self.day01.part1(), 514579)

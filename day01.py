@@ -3,14 +3,15 @@ from itertools import combinations
 
 
 class Day01(Day):
-    def __init__(self, input_file, extra_args):
-        super().__init__(input_file, extra_args)
+    def __init__(self):
+        super().__init__()
         self.lines = [int(line) for line in self.lines]
 
-        if 'target_sum' in self.extra_args:
-            self.target_sum = int(self.extra_args['target_sum'])
-        else:
-            self.target_sum = 2020
+        self.target_sum = self.args.target_sum
+
+    def add_extra_args(self):
+        self.parser.add_argument(
+            '--target-sum', type=int, default=2020, help="Target sum to reach")
 
     def extra_args_helper_str(self):
         extra_args_helper_text = self.__module__ + \

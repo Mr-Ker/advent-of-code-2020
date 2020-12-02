@@ -1,24 +1,28 @@
 import abc
+import argparse
 
 
 class Day():
     __metaclass__ = abc.ABCMeta
 
-    def __init__(self, input_file, extra_args):
-        self.input_file = open(input_file)
+    def __init__(self):
+        self.parser = argparse.ArgumentParser(
+            description='Advent of code 2020',
+            formatter_class=argparse.RawTextHelpFormatter)
+
+        self.parser.add_argument(
+            '-d', '--day',
+            help='Day of advent of code to run')
+        self.parser.add_argument(
+            '-i', '--input', type=str, default=self.__module__+".txt",
+            help='Input file for the day\'s exercise')
+
+        self.add_extra_args()
+
+        self.args = self.parser.parse_args()
+
+        self.input_file = open(self.args.input)
         self.lines = self.input_file.read().splitlines()
-        self.extra_args = {}
-
-        if extra_args is None:
-            return
-
-        if 'help' in extra_args:
-            print(self.extra_args_helper_str())
-            exit(0)
-
-        for args in extra_args:
-            key, value = args.split("=")
-            self.extra_args[key] = value
 
     def part1(self):
         raise NotImplementedError
@@ -27,5 +31,5 @@ class Day():
         raise NotImplementedError
 
     @abc.abstractmethod
-    def extra_args_helper_str(self):
-        return "No extra arguments supported for " + self.__module__
+    def add_extra_args(self):
+        pass

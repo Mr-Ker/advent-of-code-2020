@@ -1,4 +1,4 @@
-from days import Day
+from day import Day
 from itertools import combinations
 
 

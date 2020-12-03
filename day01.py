@@ -13,12 +13,6 @@ class Day01(Day):
         self.parser.add_argument(
             '--target-sum', type=int, default=2020, help="Target sum to reach")
 
-    def extra_args_helper_str(self):
-        extra_args_helper_text = self.__module__ + \
-            ' supports the following extra arguments:'
-        extra_args_helper_text += '\r\n\t target_sum=N (e.g. target_sum=2020)'
-        return extra_args_helper_text
-
     def multiple_of_found_sum(self, number_of_elements_to_sum):
         result = 1
         for items in combinations(self.lines, number_of_elements_to_sum):

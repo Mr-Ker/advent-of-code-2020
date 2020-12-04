@@ -5,6 +5,8 @@ day = "01"
 
 if "--day" in sys.argv:
     day = sys.argv[sys.argv.index("--day")+1]
+elif "-d" in sys.argv:
+    day = sys.argv[sys.argv.index("-d")+1]
 
 if len(day) == 1:
     day = "0" + day

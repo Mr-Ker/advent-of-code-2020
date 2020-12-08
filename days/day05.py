@@ -1,4 +1,4 @@
-from day import Day
+from days.day import Day
 
 
 class Day05(Day):

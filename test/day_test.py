@@ -12,6 +12,7 @@ class DayTest(unittest.TestCase):
         day = cls.__module__.split("day")[1]
         sys.argv.append("--input")
         sys.argv.append("test/test_day" + day + ".txt")
-        module = __import__("day" + str(day))
+        package = __import__("days.day" + str(day))
+        module = getattr(package, "day" + str(day))
         class_ = getattr(module, "Day" + str(day))
         cls.day = class_()

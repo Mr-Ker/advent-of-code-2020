@@ -11,7 +11,8 @@ elif "-d" in sys.argv:
 if len(day) == 1:
     day = "0" + day
 
-module = __import__("day" + str(day))
+package = __import__("days.day" + str(day))
+module = getattr(package, "day" + str(day))
 class_ = getattr(module, "Day" + str(day))
 day = class_()
 

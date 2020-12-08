@@ -14,7 +14,7 @@ class Day():
             '-d', '--day',
             help='Day of advent of code to run')
         self.parser.add_argument(
-            '-i', '--input', type=str, default=self.__module__+".txt",
+            '-i', '--input', type=str, default=self.__module__.replace(".", "/")+".txt",
             help='Input file for the day\'s exercise')
 
         self.add_extra_args()
@@ -24,9 +24,11 @@ class Day():
         self.input_file = open(self.args.input)
         self.lines = self.input_file.read().splitlines()
 
+    @abc.abstractmethod
     def part1(self):
         raise NotImplementedError
 
+    @abc.abstractmethod
     def part2(self):
         raise NotImplementedError
 
